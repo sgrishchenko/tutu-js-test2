@@ -24,14 +24,15 @@ export default class extends React.Component {
                 column: column,
                 type: sortType
             }
-        })
+        });
+        this.props.selectPage(0);
     }
 
     render() {
         let props = this.props;
         let titles = Object.keys(props.data[0])
             .filter((key) => !props.details.includes(key))
-            .map((key) => <Title key={key} column={key} sort={this.sort}/>);
+            .map((key) => <Title key={key} column={key} sort={this.sort} sortState={this.state.sort}/>);
         let rows = props.data;
         let sort = this.state.sort;
         let compare = (a, b) => {
@@ -51,7 +52,11 @@ export default class extends React.Component {
 
         rows = rows
             .slice(props.pageSize * props.page, props.pageSize * (props.page + 1))
-            .map((obj) => <Row key={JSON.stringify(obj)} obj={obj} details={props.details} onSelect={props.onSelect}/>);
+            .map((obj) => <Row key={JSON.stringify(obj)}
+                               obj={obj}
+                               details={props.details}
+                               selectedObj={props.selectedObj}
+                               onSelect={props.onSelect}/>);
 
         return (
             <table>
@@ -78,7 +83,15 @@ class Title extends React.Component {
     }
 
     render() {
-        return <th onClick={this.handleClick}>{this.props.column}</th>;
+        let arrow = this.props.sortState.column == this.props.column
+            ? <div className={this.props.sortState.type}></div>
+            : <div></div>;
+
+        return (
+            <th className="title" onClick={this.handleClick}>
+                {this.props.column}{arrow}
+            </th>
+        );
     }
 }
 
@@ -96,10 +109,12 @@ class Row extends React.Component {
     render() {
         let details = this.props.details;
         let obj = this.props.obj;
+        let selectedObj = this.props.selectedObj;
+        let selectedClass = selectedObj && JSON.stringify(selectedObj) == JSON.stringify(obj) ? "selected" : "";
         let cells = Object.keys(obj)
             .filter((key) => !details.includes(key))
             .map((key) => <td key={key}>{obj[key]}</td>);
 
-        return <tr onClick={this.handleClick}>{cells}</tr>;
+        return <tr className={selectedClass} onClick={this.handleClick}>{cells}</tr>;
     }
 }

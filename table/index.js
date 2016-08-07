@@ -49,6 +49,7 @@ class TableWithData extends React.Component {
 
                                  page={this.state.page}
                                  searchText={this.state.searchText}
+                                 selectedObj={this.state.detailObj}
 
                                  selectPage={this.selectPage}
                                  onSelect={this.handleSelect}/>

@@ -49,6 +49,8 @@ export default class extends React.Component {
                        onSelect={this.props.onSelect}
 
                        page={this.props.page}
+                       selectPage={this.props.selectPage}
+                       selectedObj={this.props.selectedObj}
                        pageSize={this.state.pageSize}/>
             </div>
         );

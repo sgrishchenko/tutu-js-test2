@@ -25,19 +25,27 @@ export default class extends React.Component {
 
     render() {
         let sizes = this.props.sizes
-            .map((size) => <a href="#" key={size} onClick={this.handleSelectPageSize.bind(this, [size])}> {size} </a>);
+            .map((size) => {
+                let active = this.props.pageSize == size ? "active" : "";
+                return <a href="#" key={size} className={active}
+                          onClick={this.handleSelectPageSize.bind(this, [size])}>{size}</a>
+            });
         let numbers = [];
         for (let i = 0; i < Math.ceil(this.props.dataSize / this.props.pageSize); i++) {
-            numbers.push(<a href="#" key={i} onClick={this.handleSelectPage.bind(this, [i])}> {i + 1} </a>)
+            let active = this.props.page == i ? "active" : "";
+            numbers.push(<a href="#" key={i} className={active}
+                            onClick={this.handleSelectPage.bind(this, [i])}>{i + 1}</a>)
         }
 
         return (
             <div>
-                <a href="#" onClick={this.prev.bind(this)}>«</a>
-                {numbers}
-                <a href="#" onClick={this.next.bind(this)}>»</a>
-                |
-                {sizes}
+                <div className="pageNumbers">
+                    <a href="#" onClick={this.prev.bind(this)}>«</a>
+                    <a href="#" onClick={this.next.bind(this)}>»</a>
+                    {numbers}
+                </div>
+
+                <div>{sizes}</div>
             </div>
         );
     }

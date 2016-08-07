@@ -1,0 +1,58 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr.selected {
+    background-color: gainsboro;
+}
+
+table {
+    width: 600px;
+}
+
+textarea {
+    width: 594px;
+    height: 4em;
+}
+
+a {
+    margin: 5px;
+}
+
+a.active {
+    color: red;
+}
+
+.pageNumbers {
+    overflow: auto;
+}
+
+.title {
+    cursor: pointer;
+}
+
+.asc {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black;
+    float: right;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.desc {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+    float: right;
+    margin-top: 5px;
+    margin-left: 5px;
+}
