@@ -47,8 +47,10 @@ export default class extends React.Component {
 
         rows.sort(compare);
 
-        console.log("Sorting: ", sort.column, sort.type);
-        console.log("Pagination: ", props.pageSize * props.page, props.pageSize * (props.page + 1));
+        if (process.env.NODE_ENV != 'production') {
+            console.log("Sorting: ", sort.column, sort.type);
+            console.log("Pagination: ", props.pageSize * props.page, props.pageSize * (props.page + 1));
+        }
 
         rows = rows
             .slice(props.pageSize * props.page, props.pageSize * (props.page + 1))

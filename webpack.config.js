@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', 'table', 'table/style.css'],
@@ -9,7 +9,7 @@ module.exports = {
     },
 
     output: {
-        path: "dist",
+        path: 'dist',
         filename: 'main.js'
     },
 
@@ -22,12 +22,17 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             }
         ]
     },
 
     plugins: [
-        new ExtractTextPlugin("main.css")
+        new ExtractTextPlugin('main.css'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': process.env.NODE_ENV || JSON.stringify('production')
+            }
+        })
     ]
 };

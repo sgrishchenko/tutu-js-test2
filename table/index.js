@@ -60,7 +60,7 @@ class TableWithData extends React.Component {
 }
 
 $(() => {
-    let url = 'https://www.filltext.com/';
+    let url = 'http://www.filltext.com/';
     let params = {
         rows: 1000,
         id: '{number|1000}',
