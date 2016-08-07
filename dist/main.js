@@ -39758,9 +39758,17 @@
 	    _createClass(_class, [{
 	        key: 'selectPageSize',
 	        value: function selectPageSize(size) {
+	            var oldPageSize = this.state.pageSize;
+	            var oldPage = this.props.page;
+
+	            var firstRecordOnOldPage = oldPage * oldPageSize;
+	            var newPage = Math.floor(firstRecordOnOldPage / size);
+
 	            this.setState({
 	                pageSize: size
 	            });
+	            console.log(oldPage, oldPageSize, firstRecordOnOldPage, newPage);
+	            this.props.selectPage(newPage);
 	        }
 	    }, {
 	        key: 'render',

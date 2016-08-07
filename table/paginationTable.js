@@ -16,9 +16,16 @@ export default class extends React.Component {
     }
 
     selectPageSize(size) {
+        let oldPageSize = this.state.pageSize;
+        let oldPage = this.props.page;
+
+        let firstRecordOnOldPage = oldPage * oldPageSize;
+        let newPage = Math.floor(firstRecordOnOldPage / size);
+
         this.setState({
             pageSize: size
-        })
+        });
+        this.props.selectPage(newPage);
     }
 
     render() {
